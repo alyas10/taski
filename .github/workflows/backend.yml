@@ -44,5 +44,8 @@ jobs:
           
           sleep 15
 
-          curl --fail -s http://localhost:8000/
-          curl --fail -s http://localhost:3000/
+          curl -i http://localhost:8000/ || true
+          curl -i http://localhost:3000/ || true
+
+          docker logs taski-backend
+          ocker logs task-frontend

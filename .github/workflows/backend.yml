@@ -48,4 +48,4 @@ jobs:
           curl -i http://localhost:3000/ || true
 
           docker logs taski-backend
-          ocker logs task-frontend
+          docker logs task-frontend

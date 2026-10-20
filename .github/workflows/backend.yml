@@ -27,12 +27,15 @@ jobs:
           push: false
           tags: taski-backend:${{ github.sha }}
 
+      - name: Build frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: false
+          tags: task-frontend:${{ github.sha }}
+
       - name: Test Docker image
         run: |
-          docker run -d --name taski-test -p 8000:8000 taski-backend:${{ github.sha }}
-          sleep 10
-          docker ps
-          # при необходимости добавьте curl для проверки, что приложение отвечает
-          # curl -f http://localhost:8000/ || exit 1
-          docker stop taski-test
-          docker rm taski-test
+          docker run -d --name taski-backend -p 8000:8000 taski-backend:${{ github.sha }}
+          docker run -d --name task-frontend -p 80:80 task-frontend:${{ github.sha }}

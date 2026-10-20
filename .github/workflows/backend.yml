@@ -41,3 +41,8 @@ jobs:
         run: |
           docker run -d --name taski-backend -p 8000:8000 taski-backend:${{ github.sha }}
           docker run -d --name task-frontend -p 80:80 task-frontend:${{ github.sha }}
+          
+          sleep 15
+
+          curl --fail -s http://localhost:8000/
+          curl --fail -s http://localhost:3000/

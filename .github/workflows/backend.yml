@@ -25,6 +25,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: false
+          load: true
           tags: taski-backend:${{ github.sha }}
 
       - name: Build frontend image
@@ -33,6 +34,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: false
+          load: true
           tags: task-frontend:${{ github.sha }}
 
       - name: Test Docker image
